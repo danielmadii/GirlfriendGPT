@@ -1,4 +1,4 @@
-# 💬 GirlfriendGPT — AI WhatsApp Auto-Reply Chrome Extension
+# 💬 GirlfriendGPT — WhatsApp Auto-Reply Chrome Extension
 
 <p align="center">
   <img src="icons/images/imagegpt.png" alt="GirlfriendGPT – AI WhatsApp Auto-Reply Extension" width="100%" />
@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>Let AI reply to your WhatsApp messages — in your own voice.</b><br/>
-  GirlfriendGPT reads WhatsApp Web and drafts or auto-sends replies that sound exactly like you, powered by GPT-4o.
+  GirlfriendGPT reads WhatsApp Web and drafts or auto-sends replies that sound exactly like you.
 </p>
 
 <p align="center">
