@@ -1,4 +1,4 @@
-# 💬 GirlfriendGPT — WhatsApp Auto-Reply Chrome Extension
+# GirlfriendGPT — WhatsApp Auto-Reply Chrome Ext
 
 <p align="center">
   <img src="icons/images/imagegpt.png" alt="GirlfriendGPT – AI WhatsApp Auto-Reply Extension" width="100%" />
