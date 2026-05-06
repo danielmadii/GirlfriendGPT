@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GirlfriendGPT — Settings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+      font-size: 14px;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+    }
+
+    /* ── PAGE LAYOUT ──────────────────────── */
+    .page { max-width: 680px; margin: 0 auto; padding: 36px 24px 80px; }
+
+    /* ── HEADER ───────────────────────────── */
+    .page-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #21262d;
+      position: relative;
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(37,211,102,0.5), transparent 60%);
+    }
+    .logo-big {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.25);
+    }
+    .page-header-text h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #e6edf3;
+      letter-spacing: -0.5px;
+    }
+    .page-header-text p {
+      font-size: 13px;
+      color: #8b949e;
+      margin-top: 3px;
+    }
+    .header-links {
+      margin-left: auto;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .header-links a {
+      color: #8b949e;
+      text-decoration: none;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      transition: all 0.15s;
+    }
+    .header-links a:hover { background: #161b22; color: #e6edf3; border-color: #484f58; }
+
+    /* ── CARDS ────────────────────────────── */
+    .card {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: #30363d; }
+
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #3fb950;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #21262d, transparent);
+    }
+
+    /* ── FIELDS ───────────────────────────── */
+    .field { margin-bottom: 18px; }
+    .field:last-child { margin-bottom: 0; }
+
+    .field-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #8b949e;
+      margin-bottom: 7px;
+      letter-spacing: 0.02em;
+    }
+    .field-desc {
+      font-size: 11px;
+      color: #484f58;
+      margin-top: 5px;
+      line-height: 1.55;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 10px 13px;
+      color: #e6edf3;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #238636;
+      box-shadow: 0 0 0 3px rgba(35,134,54,0.15);
+    }
+    input::placeholder, textarea::placeholder { color: #484f58; }
+    textarea { resize: vertical; min-height: 96px; line-height: 1.55; }
+    select option { background: #161b22; }
+
+    /* ── TOGGLES ──────────────────────────── */
+    .toggle-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid #21262d;
+    }
+    .toggle-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .toggle-row:first-child { padding-top: 0; }
+    .toggle-info .toggle-label { font-size: 13px; font-weight: 500; color: #e6edf3; }
+    .toggle-info .toggle-desc  { font-size: 11px; color: #8b949e; margin-top: 2px; line-height: 1.45; }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px; height: 24px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #21262d;
+      border-radius: 24px;
+      border: 1px solid #30363d;
+      transition: 0.25s cubic-bezier(.4,0,.2,1);
+    }
+    .slider::before {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      left: 2px; top: 2px;
+      background: #484f58;
+      border-radius: 50%;
+      transition: 0.25s cubic-bezier(.4,0,.2,1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    input:checked + .slider { background: #238636; border-color: #2ea043; }
+    input:checked + .slider::before { transform: translateX(20px); background: #fff; }
+
+    /* ── UPLOAD ───────────────────────────── */
+    .upload-area {
+      border: 2px dashed #30363d;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #0d1117;
+    }
+    .upload-area:hover { border-color: #238636; background: rgba(35,134,54,0.04); }
+    .upload-area input[type="file"] { display: none; }
+    .upload-icon { font-size: 32px; margin-bottom: 8px; }
+    .upload-text { font-size: 13px; color: #8b949e; font-weight: 500; }
+    .upload-hint { font-size: 11px; color: #484f58; margin-top: 4px; }
+
+    .upload-status {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.55;
+      display: none;
+      white-space: pre-line;
+    }
+    .upload-status.success {
+      background: rgba(63,185,80,0.08);
+      border: 1px solid rgba(63,185,80,0.25);
+      color: #3fb950;
+    }
+    .upload-status.error {
+      background: rgba(248,81,73,0.08);
+      border: 1px solid rgba(248,81,73,0.25);
+      color: #f85149;
+    }
+
+    .sender-select-wrap { margin-top: 14px; display: none; }
+
+    /* ── WARN BOX ─────────────────────────── */
+    .warn-box {
+      background: rgba(210,153,34,0.08);
+      border: 1px solid rgba(210,153,34,0.25);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 12px;
+      color: #d29922;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    /* ── PILL ─────────────────────────────── */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(63,185,80,0.1);
+      border: 1px solid rgba(63,185,80,0.25);
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #3fb950;
+      margin-top: 8px;
+    }
+
+    /* ── CRYPTO DONATIONS ─────────────────── */
+    .crypto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .crypto-item {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 14px;
+      transition: border-color 0.2s;
+    }
+    .crypto-item:hover { border-color: #484f58; }
+    .crypto-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .crypto-icon {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+    .crypto-icon.btc  { background: rgba(247,147,26,0.15); }
+    .crypto-icon.eth  { background: rgba(98,126,234,0.15); }
+    .crypto-icon.usdt { background: rgba(38,161,123,0.15); }
+    .crypto-icon.sol  { background: rgba(153,69,255,0.15); }
+    .crypto-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+    .crypto-network {
+      font-size: 10px;
+      color: #8b949e;
+    }
+    .crypto-address {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 10px;
+      color: #8b949e;
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 7px;
+      padding: 6px 8px;
+      word-break: break-all;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+    }
+    .crypto-address:hover {
+      border-color: #30363d;
+      color: #e6edf3;
+    }
+    .copy-hint {
+      font-size: 10px;
+      color: #484f58;
+      margin-top: 5px;
+      text-align: right;
+    }
+    .donate-note {
+      font-size: 12px;
+      color: #8b949e;
+      line-height: 1.6;
+      margin-top: 6px;
+      text-align: center;
+      padding: 10px;
+    }
+    .donate-note a {
+      color: #3fb950;
+      text-decoration: none;
+    }
+    .donate-note a:hover { text-decoration: underline; }
+
+    /* ── BUTTONS ──────────────────────────── */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 28px;
+    }
+    .btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: inherit;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: linear-gradient(135deg, #238636, #2ea043);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(35,134,54,0.3);
+    }
+    .btn-primary:hover { box-shadow: 0 4px 18px rgba(35,134,54,0.45); }
+    .btn-danger {
+      background: #161b22;
+      color: #f85149;
+      border: 1px solid rgba(248,81,73,0.3);
+    }
+    .btn-danger:hover { background: rgba(248,81,73,0.08); border-color: #f85149; }
+    .btn-secondary {
+      background: #21262d;
+      color: #e6edf3;
+      border: 1px solid #30363d;
+    }
+    .btn-secondary:hover { background: #2d333b; }
+
+    /* ── TOAST ────────────────────────────── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #238636;
+      color: white;
+      padding: 10px 22px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+      pointer-events: none;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(35,134,54,0.4);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── MISC ─────────────────────────────── */
+    .divider { height: 1px; background: #21262d; margin: 4px 0; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <div class="logo-big">💬</div>
+    <div class="page-header-text">
+      <h1>GirlfriendGPT</h1>
+      <p>Settings &amp; Configuration</p>
+    </div>
+    <div class="header-links">
+      <a href="https://github.com/danielgmansour/GirlfriendGPT" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+
+  <!-- OpenAI Config -->
+  <div class="card">
+    <div class="card-title">🔑 OpenAI Configuration</div>
+
+    <div class="field">
+      <label class="field-label" for="apiKey">API Key</label>
+      <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off" />
+      <div class="field-desc">Stored locally in your browser only. Never sent anywhere except api.openai.com.</div>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="modelSelect">Model</label>
+      <select id="modelSelect">
+        <option value="gpt-4o">GPT-4o (recommended)</option>
+        <option value="gpt-4o-mini">GPT-4o Mini (faster &amp; cheaper)</option>
+        <option value="gpt-4-turbo">GPT-4 Turbo</option>
+        <option value="gpt-3.5-turbo">GPT-3.5 Turbo (budget)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Chat Config -->
+  <div class="card">
+    <div class="card-title">💬 Chat Configuration</div>
+
+    <div class="field">
+      <label class="field-label" for="allowedChat">Allowed Chat</label>
+      <input type="text" id="allowedChat" placeholder="e.g. Sara, +96170..." />
+      <div class="field-desc">The assistant ONLY activates in this chat. Must match the name shown at the top of WhatsApp Web (partial match supported).</div>
+    </div>
+  </div>
+
+  <!-- Behavior -->
+  <div class="card">
+    <div class="card-title">⚙️ Behavior</div>
+
+    <div class="toggle-row">
+      <div class="toggle-info">
+        <div class="toggle-label">⚡ Auto-Send</div>
+        <div class="toggle-desc">Automatically send replies when risk level is low</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="autoSend" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="warn-box" id="autoSendWarn" style="display:none">
+      ⚠️ Auto-Send is risky. Keep Safety Mode ON. Test thoroughly with Auto-Send OFF first.
+    </div>
+
+    <div class="toggle-row">
+      <div class="toggle-info">
+        <div class="toggle-label">🛡️ Safety Mode</div>
+        <div class="toggle-desc">Block auto-send for sensitive, emotional, or conflict messages</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="safetyMode" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-row">
+      <div class="toggle-info">
+        <div class="toggle-label">🐛 Debug Mode</div>
+        <div class="toggle-desc">Log activity to the browser console (DevTools)</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="debugMode" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Prompts -->
+  <div class="card">
+    <div class="card-title">📝 Prompt Configuration</div>
+
+    <div class="field">
+      <label class="field-label" for="systemPrompt">System Prompt</label>
+      <textarea id="systemPrompt" rows="10" placeholder="Core AI instructions..."></textarea>
+      <div class="field-desc">The core instructions for how the AI should behave and reply. Edit carefully.</div>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="styleInstructions">Extra Style Notes</label>
+      <textarea id="styleInstructions" rows="4" placeholder="e.g. I reply fast. I'm usually sarcastic. I rarely use emojis..."></textarea>
+    </div>
+  </div>
+
+  <!-- Chat Export -->
+  <div class="card">
+    <div class="card-title">📁 WhatsApp Chat Export — Style Training</div>
+
+    <div class="field-desc" style="color:#8b949e; font-size:12px; line-height:1.65; margin-bottom:14px">
+      Export a WhatsApp chat from your phone <strong style="color:#e6edf3">(Chat → ⋮ → More → Export Chat → Without Media)</strong>, then upload the .txt file. Your messages are parsed locally — nothing is sent to OpenAI except a short style summary.
+    </div>
+
+    <div class="upload-area" id="uploadArea">
+      <input type="file" id="chatFileInput" accept=".txt" />
+      <div class="upload-icon">📄</div>
+      <div class="upload-text">Click or drag a WhatsApp .txt export here</div>
+      <div class="upload-hint">Parsed 100% locally in your browser</div>
+    </div>
+
+    <div class="upload-status" id="uploadStatus"></div>
+
+    <div class="sender-select-wrap" id="senderSelectWrap">
+      <label class="field-label" for="senderSelect" style="margin-top:14px; display:block">Which sender is you?</label>
+      <select id="senderSelect">
+        <option value="">— Select your name —</option>
+      </select>
+      <div class="field-desc">Select your name so we can analyze your writing style.</div>
+      <button class="btn btn-primary" style="margin-top:12px; width:100%" id="buildStyleBtn">
+        ✨ Build Style Profile
+      </button>
+    </div>
+
+    <div id="styleProfileStatus" style="margin-top:12px; display:none">
+      <span class="pill" id="styleProfilePill">✓ Style profile loaded</span>
+    </div>
+  </div>
+
+  <!-- Danger Zone -->
+  <div class="card">
+    <div class="card-title" style="color:#f85149">🗑️ Data Management</div>
+    <button class="btn btn-danger" id="clearStyleBtn">Clear Style Profile &amp; Training Data</button>
+    <div class="field-desc" style="margin-top:8px">Removes style summary and examples. Your API key and settings are kept.</div>
+  </div>
+
+  <!-- ── CRYPTO DONATIONS ──────────────────── -->
+  <div class="card">
+    <div class="card-title">☕ Support the Project</div>
+
+    <div class="donate-note">
+      GirlfriendGPT is <strong style="color:#e6edf3">free &amp; open source</strong>.
+      If it saves you from a bad text, consider buying me a coffee ☕<br>
+      <a href="https://github.com/danielgmansour/GirlfriendGPT" target="_blank">⭐ Star on GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/danielgmansour/GirlfriendGPT/issues" target="_blank">🐛 Report a bug</a>
+    </div>
+
+    <div class="crypto-grid" style="margin-top:16px">
+
+      <div class="crypto-item">
+        <div class="crypto-header">
+          <div class="crypto-icon btc">₿</div>
+          <div>
+            <div class="crypto-name">Bitcoin</div>
+            <div class="crypto-network">BTC Network</div>
+          </div>
+        </div>
+        <div class="crypto-address" id="addr-btc" title="Click to copy"
+          data-addr="bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh">
+          bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+        </div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+
+      <div class="crypto-item">
+        <div class="crypto-header">
+          <div class="crypto-icon eth">Ξ</div>
+          <div>
+            <div class="crypto-name">Ethereum</div>
+            <div class="crypto-network">ERC-20</div>
+          </div>
+        </div>
+        <div class="crypto-address" id="addr-eth" title="Click to copy"
+          data-addr="0x71C7656EC7ab88b098defB751B7401B5f6d8976F">
+          0x71C7656EC7ab88b098defB751B7401B5f6d8976F
+        </div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+
+      <div class="crypto-item">
+        <div class="crypto-header">
+          <div class="crypto-icon usdt">₮</div>
+          <div>
+            <div class="crypto-name">USDT</div>
+            <div class="crypto-network">TRC-20 (Tron)</div>
+          </div>
+        </div>
+        <div class="crypto-address" id="addr-usdt" title="Click to copy"
+          data-addr="TN3W4H6rK2ce4vX9YnFQHwKx6n9zXAU3cs">
+          TN3W4H6rK2ce4vX9YnFQHwKx6n9zXAU3cs
+        </div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+
+      <div class="crypto-item">
+        <div class="crypto-header">
+          <div class="crypto-icon sol">◎</div>
+          <div>
+            <div class="crypto-name">Solana</div>
+            <div class="crypto-network">SOL Network</div>
+          </div>
+        </div>
+        <div class="crypto-address" id="addr-sol" title="Click to copy"
+          data-addr="HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH">
+          HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH
+        </div>
+        <div class="copy-hint">click to copy</div>
+      </div>
+
+    </div>
+
+    <div class="donate-note" style="margin-top:4px; font-size:11px; color:#484f58">
+      ⚠️ Always verify addresses before sending. Double-check the network.
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="resetDefaultsBtn">Reset Prompts</button>
+    <button class="btn btn-primary" id="saveBtn">💾 Save Settings</button>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Settings saved ✓</div>
+
+<script src="chatParser.js"></script>
+<script src="options.js"></script>
+</body>
+</html>
