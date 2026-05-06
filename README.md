@@ -1,7 +1,7 @@
 # 💬 GirlfriendGPT — AI WhatsApp Auto-Reply Chrome Extension
 
 <p align="center">
-  <img src="assets/banner.png" alt="GirlfriendGPT – AI WhatsApp Auto-Reply Extension" width="100%" />
+  <img src="icons/images/imagegpt.png" alt="GirlfriendGPT – AI WhatsApp Auto-Reply Extension" width="100%" />
 </p>
 
 <p align="center">
@@ -40,12 +40,6 @@ Works in **any language**. No backend. No data collection. Just paste your OpenA
 - **Safety Mode** — never auto-sends on sensitive topics (jealousy, money, "we need to talk", etc.)
 - **No backend** — everything runs locally; only the reply prompt goes to OpenAI
 - **Privacy first** — your chat export never leaves the browser; API key stored locally only
-
----
-
-## 📸 Preview
-
-> Add a screenshot here: drag an image into this file on GitHub, or place it at `assets/screenshot.png`
 
 ---
 
