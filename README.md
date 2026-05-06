@@ -1,31 +1,51 @@
-# 💬 GirlfriendGPT
+# 💬 GirlfriendGPT — AI WhatsApp Auto-Reply Chrome Extension
 
-> An AI-powered Chrome extension that reads WhatsApp Web and replies in **your** natural texting style using OpenAI — so you never have to overthink a message again. Works in any language.
+<p align="center">
+  <img src="assets/banner.png" alt="GirlfriendGPT – AI WhatsApp Auto-Reply Extension" width="100%" />
+</p>
 
-![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white)
-![Manifest V3](https://img.shields.io/badge/Manifest-V3-brightgreen)
-![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o-412991?logo=openai&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-blue)
+<p align="center">
+  <b>Let AI reply to your WhatsApp messages — in your own voice.</b><br/>
+  GirlfriendGPT reads WhatsApp Web and drafts or auto-sends replies that sound exactly like you, powered by GPT-4o.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Chrome-Extension-4285F4?logo=googlechrome&logoColor=white" />
+  <img src="https://img.shields.io/badge/Manifest-V3-brightgreen" />
+  <img src="https://img.shields.io/badge/OpenAI-GPT--4o-412991?logo=openai&logoColor=white" />
+  <img src="https://img.shields.io/badge/license-MIT-blue" />
+  <img src="https://img.shields.io/badge/privacy-local%20only-success" />
+</p>
+
+---
+
+## What is GirlfriendGPT?
+
+**GirlfriendGPT** is a free, open-source Chrome extension that acts as your personal AI texting assistant on [WhatsApp Web](https://web.whatsapp.com). It reads incoming messages, learns your texting style from your real chat history, and writes replies that sound like you — not like a robot.
+
+Works in **any language**. No backend. No data collection. Just paste your OpenAI API key and go.
+
+> Perfect for: busy people, long-distance relationships, anyone who hates overthinking texts.
 
 ---
 
 ## ✨ Features
 
-- **One chat only** — you pick exactly one contact. It does nothing in any other chat.
-- **Learns your style** — upload a WhatsApp chat export (.txt) and it analyzes how you write.
-- **Any language** — built for casual, natural texting in whatever language you use (not corporate AI speak).
-- **Safety Mode** — automatically blocks auto-send for sensitive topics (jealousy, money, "we need to talk", etc.)
-- **Auto-Send toggle** — OFF by default. Turn on only when you trust it.
-- **Draft mode** — when Auto-Send is off, it just writes the reply in the input box. You decide.
-- **Risk scoring** — every reply gets a `low / medium / high` risk score before sending.
-- **No backend** — everything runs locally. Only the reply prompt goes to OpenAI.
-- **Privacy first** — your chat export never leaves the browser. API key stored locally only.
+- **Learns your style** — upload a WhatsApp chat export (.txt) and it analyzes exactly how you write
+- **Any language** — works in English, Spanish, French, Arabic, or whatever you text in
+- **One chat only** — you pick one contact; it does nothing in any other chat
+- **Draft mode** — writes the reply in the input box; you review before sending
+- **Auto-Send toggle** — off by default; turn on only when you trust the output
+- **Risk scoring** — every reply gets a `low / medium / high` risk score before sending
+- **Safety Mode** — never auto-sends on sensitive topics (jealousy, money, "we need to talk", etc.)
+- **No backend** — everything runs locally; only the reply prompt goes to OpenAI
+- **Privacy first** — your chat export never leaves the browser; API key stored locally only
 
 ---
 
-## 📸 Screenshot
+## 📸 Preview
 
-> *(Add screenshots here once loaded in Chrome)*
+> Add a screenshot here: drag an image into this file on GitHub, or place it at `assets/screenshot.png`
 
 ---
 
@@ -33,10 +53,11 @@
 
 ### Step 1 — Download
 
-Clone or download this repo:
 ```bash
 git clone https://github.com/danielmadii/GirlfriendGPT.git
 ```
+
+Or download the ZIP from the [releases page](https://github.com/danielmadii/GirlfriendGPT/releases).
 
 ### Step 2 — Load in Chrome
 
@@ -103,9 +124,18 @@ High-risk replies get flagged and only drafted — never auto-sent.
 
 ---
 
+## 🔒 Privacy
+
+- Your OpenAI API key is stored only in `chrome.storage.local`
+- The WhatsApp chat export is **never** sent to any server
+- Only sent to OpenAI per reply: the incoming message + last 10 messages of context + a style summary + ~15 example messages
+- No analytics, no telemetry, no accounts
+
+---
+
 ## 🔧 Updating WhatsApp Selectors
 
-WhatsApp Web changes its internal class names frequently. If the extension stops detecting messages, open `src/content.js` and look for these functions — each has a list of selectors to try:
+WhatsApp Web changes its internal class names frequently. If the extension stops detecting messages, open `src/content.js` and look for these functions:
 
 | Function | What it finds |
 |---|---|
@@ -142,24 +172,15 @@ GirlfriendGPT/
 
 ---
 
-## 🔒 Privacy
-
-- Your OpenAI API key is stored only in `chrome.storage.local`
-- The WhatsApp chat export is **never** sent to any server
-- Only sent to OpenAI per reply: the incoming message + last 10 messages of context + a style summary + ~15 example messages
-- No analytics, no telemetry, no accounts
-
----
-
 ## ☕ Support
 
-GirlfriendGPT is free and open source. If it saves you from sending a bad text, consider:
+GirlfriendGPT is free and open source. If it saves you from a bad text, consider:
 
-- ⭐ **Starring the repo** on [GitHub](https://github.com/danielmadii/GirlfriendGPT)
-- 🐛 **Reporting bugs** via [Issues](https://github.com/danielmadii/GirlfriendGPT/issues)
-- 💬 **Contributing** — [PRs welcome](https://github.com/danielmadii/GirlfriendGPT/pulls)
+- ⭐ **[Star the repo](https://github.com/danielmadii/GirlfriendGPT)** — helps others find it
+- 🐛 **[Report bugs](https://github.com/danielmadii/GirlfriendGPT/issues)** — Issues are open
+- 💬 **[Contribute](https://github.com/danielmadii/GirlfriendGPT/pulls)** — PRs welcome
 
-### Crypto Donations
+### Donate
 
 | Coin | Network | Address |
 |---|---|---|
@@ -178,3 +199,7 @@ This extension replies on your behalf. Always review generated messages before s
 ## 📄 License
 
 MIT — do whatever you want, just don't blame me if your relationship ends.
+
+---
+
+**Keywords:** whatsapp ai auto reply · ai texting assistant · chrome extension whatsapp · gpt-4o whatsapp · whatsapp web automation · ai reply generator · openai whatsapp bot · smart reply extension · whatsapp ai bot · auto reply whatsapp chrome
