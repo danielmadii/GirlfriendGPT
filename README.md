@@ -155,20 +155,17 @@ GirlfriendGPT/
 
 GirlfriendGPT is free and open source. If it saves you from sending a bad text, consider:
 
-- ⭐ **Starring the repo** on GitHub
-- 🐛 **Reporting bugs** via Issues
-- 💬 **Contributing** — PRs welcome
+- ⭐ **Starring the repo** on [GitHub](https://github.com/danielmadii/GirlfriendGPT)
+- 🐛 **Reporting bugs** via [Issues](https://github.com/danielmadii/GirlfriendGPT/issues)
+- 💬 **Contributing** — [PRs welcome](https://github.com/danielmadii/GirlfriendGPT/pulls)
 
 ### Crypto Donations
 
 | Coin | Network | Address |
 |---|---|---|
-| **BTC** | Bitcoin | `bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh` |
-| **ETH** | ERC-20 | `0x71C7656EC7ab88b098defB751B7401B5f6d8976F` |
 | **USDT** | TRC-20 (Tron) | `TXCyHeDWDdtLLY38GCXtgKzk9qd6Fnz1L1` |
-| **SOL** | Solana | `HN7cABqLq46Es1jh92dQQisAq662SmxELLLsHHe4YWrH` |
 
-> ⚠️ Always verify addresses before sending. Double-check the network.
+> ⚠️ Always verify the address before sending. Double-check the network.
 
 ---
 
