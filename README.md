@@ -196,4 +196,4 @@ MIT — do whatever you want, just don't blame me if your relationship ends.
 
 ---
 
-**Keywords:** whatsapp ai auto reply · ai texting assistant · chrome extension whatsapp · gpt-4o whatsapp · whatsapp web automation · ai reply generator · openai whatsapp bot · smart reply extension · whatsapp ai bot · auto reply whatsapp chrome
+**Keywords:** whatsapp ai auto reply · ai texting assistant · chrome extension whatsapp · gpt-4o whatsapp · whatsapp web automation · ai reply generator · openai whatsapp bot · smart reply extension · whatsapp ai bot · auto reply whatsapp chrome.
